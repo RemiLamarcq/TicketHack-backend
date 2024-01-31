@@ -41,6 +41,63 @@ router.post('/selectedTrips', function(req, res) {
     })
 
 
+router.put('/BookedByID', function(req,res){
+    Trips.findById(req.body.id).then(data => {
+        Trips.updateOne({_id : req.body.id},{isBooked : true}).then((data) => {
+            res.json({result : true, data})
+            console.log(data)
+        })
+    })
+})
+
+router.get('/Booked', function (req,res){
+    Trips.find({isBooked : true}).then(data => {
+        res.json({result : true, trips :data})
+    })
+})
+
+router.put('/notBooked', function(req,res){
+    Trips.findById(req.body.id).then(data => {
+    Trips.updateOne({_id : req.body.id},{isBooked : false}).then((data) => {
+        res.json({result : true, data})
+        console.log(data)
+    })
+})})
+
+router.put('/PaidById', function(req,res){
+    Trips.findById(req.body.id).then(data => {
+        Trips.updateOne({_id : req.body.id},{isPaid : true}).then((data) => {
+            res.json({result : true, data})
+            console.log(data)
+        })
+    })})
+
+router.get('/Paid', function(req,res){
+    Trips.find({isPaid : true}).then(data => {
+        res.json({result : true, trips :data})
+    })})
+
+
+/* INIT isBooked -> false*/
+
+    router.put('/isBookedTrue', function (req, res){
+    Trips.find().then(data => {
+        Trips.updateMany({},{isBooked : false}).then((data) => {
+            res.json({result : true, data})
+        })
+    })
+})
+
+/* INIT isPaid -> false*/
+router.put('/isPaidFalse', function (req, res){
+    Trips.find().then(data => {
+        Trips.updateMany({},{isPaid : false}).then((data) => {
+            res.json({result : true, data})
+        })
+    })
+})
+
+
 
 
 

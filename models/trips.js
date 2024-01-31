@@ -5,6 +5,7 @@ const tripschema = mongoose.Schema({
     arrival: String,
     date: Date,
     price: Number,
+    isBooked: Boolean,
     isPaid: Boolean
 })
 
