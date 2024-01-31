@@ -41,7 +41,7 @@ router.post('/selectedTrips', function(req, res) {
     })
 
 
-router.put('/BookedByID', function(req,res){
+router.put('/bookedByID', function(req,res){
     Trips.findById(req.body.id).then(data => {
         Trips.updateOne({_id : req.body.id},{isBooked : true}).then((data) => {
             res.json({result : true, data})
@@ -50,7 +50,7 @@ router.put('/BookedByID', function(req,res){
     })
 })
 
-router.get('/Booked', function (req,res){
+router.get('/booked', function (req,res){
     Trips.find({isBooked : true}).then(data => {
         res.json({result : true, trips :data})
     })
@@ -64,7 +64,7 @@ router.put('/notBooked', function(req,res){
     })
 })})
 
-router.put('/PaidById', function(req,res){
+router.put('/paidById', function(req,res){
     Trips.findById(req.body.id).then(data => {
         Trips.updateOne({_id : req.body.id},{isPaid : true}).then((data) => {
             res.json({result : true, data})
